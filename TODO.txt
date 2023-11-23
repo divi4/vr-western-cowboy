@@ -1,0 +1,2 @@
+Bullet hits not registering with cowboy collider
+Check if m_isDisabled is correct/working
