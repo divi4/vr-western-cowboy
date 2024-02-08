@@ -1,2 +1,9 @@
 Bullet hits not registering with cowboy collider
 Check if m_isDisabled is correct/working
+
+Add gravity back to gun
+
+
+
+
+Didn't add gaze controller and screen space controller
