@@ -36,7 +36,6 @@ public class Target : MonoBehaviour
 
     private void ToggleTarget()
     {
-        Debug.Log(m_isDisabled);
         m_Renderer.enabled = m_isDisabled;
         m_Collider.enabled = m_isDisabled;
 

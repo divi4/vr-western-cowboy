@@ -1,3 +1,2 @@
 Bullet hits not registering with cowboy collider
-Instantiate bullet rotated 90 degrees on x-axis but still go forward
 Check if m_isDisabled is correct/working
