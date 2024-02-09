@@ -1,9 +1,42 @@
+Turn smooth hand animation on for hand prefabs
+- Fix hash not found error
+- Find where to get the Left HandAvatar for animator component
+
+
+
+Add bullet limit of 6
+Add countdown timer
+Add reaction timer
+
+
+Fix reaction timing
+Clean up UI
+
+
+Create a random var countdown every second to 0
+When hit 0 start count time to hit opponent
+Stop the reaction time when opponent collider is triggered
+Disable gun shoot script
+Show reaction time on screen
+
+
+
+
+
+**Done**
+Figured out VR UI
+Add gravity back to gun
 Bullet hits not registering with cowboy collider
 Check if m_isDisabled is correct/working
 
-Add gravity back to gun
+
+
+
+
+
 
 
 
 
 Didn't add gaze controller and screen space controller
+

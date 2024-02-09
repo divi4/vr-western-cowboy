@@ -1,24 +1,25 @@
-using System;
 using UnityEngine.InputSystem;
 using UnityEngine;
+using System;
 
-public class smoothHands : MonoBehaviour
+namespace Hands.Scripts
 {
-    [SerializeField] private Animator handAnimator;
-    [SerializeField] private InputActionReference triggerActionRef;
-    [SerializeField] private InputActionReference gripActionRef;
-
-
-    private static readonly int TriggerAnimation = Animator.StringToHash("Trigger");
-    private static readonly int GripAnimation = Animator.StringToHash("Grip");
-
-    private void Update()
+    public class smoothHands : MonoBehaviour
     {
-        float triggerValue = triggerActionRef.action.ReadValue<float>();
-        handAnimator.SetFloat("Trigger", triggerValue);
+        [SerializeField] private Animator handAnimator;
+        [SerializeField] private InputActionReference triggerActionRef;
+        [SerializeField] private InputActionReference gripActionRef;
 
-        float gripValue = gripActionRef.action.ReadValue<float>();
-        handAnimator.SetFloat("Grip", gripValue);
+        private static readonly int triggerAnimation = Animator.StringToHash("Trigger");
+        private static readonly int gripAnimation = Animator.StringToHash("Grip");
+
+        private void Update()
+        {
+            float triggerValue = triggerActionRef.action.ReadValue<float>();
+            handAnimator.SetFloat(triggerAnimation, triggerValue);
+
+            float gripValue = gripActionRef.action.ReadValue<float>();
+            handAnimator.SetFloat(gripAnimation, gripValue);
+        }
     }
-
 }
