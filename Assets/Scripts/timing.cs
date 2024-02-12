@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class timing : MonoBehaviour
 {
@@ -25,8 +26,7 @@ public class timing : MonoBehaviour
         failTextObject.SetActive(false);
         reactionText.enabled = false;
 
-        // pistol.GetComponent<XRGrabInteractable>.InteractionLayerMask = 0;
-        // Debug.Log("Update: " + pistol.GetComponent<Interactor>.InteractionLayerMask);
+        pistol.GetComponent<XRGrabInteractable>().interactionLayers = InteractionLayerMask.GetMask("Nothing");
     }
 
     // Update is called once per frame
@@ -59,7 +59,7 @@ public class timing : MonoBehaviour
 
     private void DuelStart()
     {
-        // pistol.GetComponent<Interactor>.InteractionLayerMask = LayerMask.GetMask("Interactable");
+        pistol.GetComponent<XRGrabInteractable>().interactionLayers = InteractionLayerMask.GetMask("Interactable");
         timeIsRunning = true;
     }
 
@@ -81,7 +81,7 @@ public class timing : MonoBehaviour
     {
         failTextObject.SetActive(true);
 
-        // pistol.GetComponent<Interactor>.InteractionLayerMask = 0;
+        pistol.GetComponent<XRGrabInteractable>().interactionLayers = InteractionLayerMask.GetMask("Nothing");
 
         yield return new WaitForSecondsRealtime(5);
 

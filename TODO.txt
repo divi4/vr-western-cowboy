@@ -7,13 +7,10 @@ Cowboy can't be hit for couple seconds - test
 Stop reaction time on enemy hit
 
 **TO DO**
-Disable gun on hitting target
-
-
 Implement enemy shooting
+
 Show fail screen on player being hit
 Disable gun on been hit
-
 
 
 Add bell sound, link to countdown
@@ -43,11 +40,16 @@ Cant see UI in VR, can see overlay on PC as well as camera space if VR not hooke
 
 Add bullet limit of 6
 
+Updated game project Unity version
+Disable gun shooting on hitting target
+Disable grabbing gun during countdown
+
 
 
 **Later**
 Implement a short tutorial before game
 Have the UI follow the screen like a on-screen hud
+Add randomness to the trajectory of the shots of the AI so they don't always hit the player first shot
 
 
 

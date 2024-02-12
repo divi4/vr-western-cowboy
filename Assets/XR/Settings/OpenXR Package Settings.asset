@@ -31,7 +31,6 @@ MonoBehaviour:
   - {fileID: -570706560792619364}
   m_renderMode: 1
   m_depthSubmissionMode: 0
-  m_symmetricProjection: 0
 --- !u!114 &-7893190522066923973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,11 +234,7 @@ MonoBehaviour:
   - visibleName: Quest Pro
     manifestName: cambria
     enabled: 1
-  forceRemoveInternetPermission: 0
-  symmetricProjection: 0
-  systemSplashScreen: {fileID: 0}
-  lateLatchingMode: 0
-  lateLatchingDebug: 0
+  forceRemoveInternetPermission: 1
 --- !u!114 &-3337277112072095300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -716,7 +711,6 @@ MonoBehaviour:
   - {fileID: 7953309450685910000}
   m_renderMode: 1
   m_depthSubmissionMode: 0
-  m_symmetricProjection: 0
 --- !u!114 &7953309450685910000
 MonoBehaviour:
   m_ObjectHideFlags: 0

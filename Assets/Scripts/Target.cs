@@ -4,7 +4,6 @@ public class Target : MonoBehaviour
 {
     public GameObject reactionText;
     
-    
     private SkinnedMeshRenderer m_Renderer;
     private BoxCollider m_Collider;
     private AudioSource m_AudioSource;
@@ -13,6 +12,18 @@ public class Target : MonoBehaviour
     private Vector3 m_RandomRotation;
     private bool m_isDisabled;
 
+    public float shootTime;
+    private bool isDuelStart = false;
+
+
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private Transform bulletPosition;
+    [SerializeField] private float shootDelay = 0.2f;
+    [Range(0, 3000), SerializeField] private float bulletSpeed;
+
+    [Space, SerializeField] private AudioSource audioSource;
+
+
     private void Awake()
     {
         m_Renderer = GetComponentInChildren<SkinnedMeshRenderer>();
@@ -20,6 +31,49 @@ public class Target : MonoBehaviour
         m_AudioSource = GetComponent<AudioSource>();
         m_ParticleSystem = GetComponentInChildren<ParticleSystem>();
 
+        shootTime = Random.Range(1.0f, 5.0f); // Change to 4-11 after testing
+    }
+
+
+    void Update() 
+    {
+        if (isDuelStart) {
+            shootTime -= Time.deltaTime;
+        } else if ((!isDuelStart && shootTime <= 0)) {
+            shootPlayer();
+        }
+
+    }
+
+
+    private void shootPlayer() 
+    {
+        Debug.Log("Bullet shot!"); // Current doesn't work
+        
+        var bulletPrefab = Instantiate(bullet, bulletPosition.position, bulletPosition.rotation);
+        var bulletRB = bulletPrefab.GetComponent<Rigidbody>();
+
+        var direction = bulletPrefab.transform.TransformDirection(Vector3.forward);
+        bulletRB.AddForce(direction * bulletSpeed);
+        Destroy(bulletPrefab, 5f);
+    }
+
+
+    public void GunShotAudio() 
+    { 
+        var random = Random.Range(0.8f, 1.2f);
+        audioSource.pitch = random;
+        
+        audioSource.Play();
+    }
+
+
+    public void NoBulletsAudio() 
+    { 
+        var random = Random.Range(0.8f, 1.2f);
+        audioSource.pitch = random;
+        
+        audioSource.Play();
     }
 
 
