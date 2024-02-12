@@ -3246,7 +3246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 0}
+  m_InteractionManager: {fileID: 429477258}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -3413,6 +3413,7 @@ MonoBehaviour:
   shootDelay: 0.2
   bulletSpeed: 3000
   audioSource: {fileID: 0}
+  bullets: 6
 --- !u!1 &1823786524 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4472608159159010013, guid: d1fa25901c5ae93488584bbd5a205933,
@@ -3634,6 +3635,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_enableAutoSizing
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4472608159159010017, guid: d1fa25901c5ae93488584bbd5a205933,
+        type: 3}
+      propertyPath: pistol
+      value: 
+      objectReference: {fileID: 1801451184}
+    - target: {fileID: 4472608159159010017, guid: d1fa25901c5ae93488584bbd5a205933,
+        type: 3}
+      propertyPath: GunShoot
+      value: GunShoot
       objectReference: {fileID: 0}
     - target: {fileID: 4472608159159010017, guid: d1fa25901c5ae93488584bbd5a205933,
         type: 3}

@@ -10,26 +10,46 @@ public class GunShoot : MonoBehaviour
     [Space, SerializeField] private AudioSource audioSource;
 
     private float lastShot;
+    public int bullets = 6;
+    public bool canShoot = true;
 
     public void Shoot() 
     {
-        if (lastShot > Time.time) return;
+        if(canShoot) {
+            if (lastShot > Time.time) return;
 
-        lastShot = Time.time + shootDelay;
+            if(bullets == 0) {
+                // NoBulletsAudio();
+                return;
+            }
 
-        // TODO add audio
-        // GunShotAudio();
+            lastShot = Time.time + shootDelay;
 
-        var bulletPrefab = Instantiate(bullet, bulletPosition.position, bulletPosition.rotation);
-        var bulletRB = bulletPrefab.GetComponent<Rigidbody>();
+            // TODO add audio
+            // GunShotAudio();
 
-        var direction = bulletPrefab.transform.TransformDirection(Vector3.forward);
-        bulletRB.AddForce(direction * bulletSpeed);
-        Destroy(bulletPrefab, 5f);
+            bullets -= 1;
+
+            var bulletPrefab = Instantiate(bullet, bulletPosition.position, bulletPosition.rotation);
+            var bulletRB = bulletPrefab.GetComponent<Rigidbody>();
+
+            var direction = bulletPrefab.transform.TransformDirection(Vector3.forward);
+            bulletRB.AddForce(direction * bulletSpeed);
+            Destroy(bulletPrefab, 5f);
+        }
     }
 
 
     public void GunShotAudio() 
+    { 
+        var random = Random.Range(0.8f, 1.2f);
+        audioSource.pitch = random;
+        
+        audioSource.Play();
+    }
+
+
+    public void NoBulletsAudio() 
     { 
         var random = Random.Range(0.8f, 1.2f);
         audioSource.pitch = random;

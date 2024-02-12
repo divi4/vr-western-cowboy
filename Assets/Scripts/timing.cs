@@ -7,13 +7,16 @@ using UnityEngine.UI;
 
 public class timing : MonoBehaviour
 {
+    public GameObject pistol;
+
     public TextMeshProUGUI reactionText;
     public GameObject failTextObject;
 
     private bool timeIsRunning = false;   // Set back to false if enemy hit
     private bool health = true;
     private float reactionTime = 0; 
-    public float countdownTime;     
+    public float countdownTime;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +24,9 @@ public class timing : MonoBehaviour
         countdownTime = Random.Range(5.0f, 15.0f);
         failTextObject.SetActive(false);
         reactionText.enabled = false;
+
+        // pistol.GetComponent<XRGrabInteractable>.InteractionLayerMask = 0;
+        // Debug.Log("Update: " + pistol.GetComponent<Interactor>.InteractionLayerMask);
     }
 
     // Update is called once per frame
@@ -53,7 +59,7 @@ public class timing : MonoBehaviour
 
     private void DuelStart()
     {
-        // GetComponent<__get script of pistol__>().enabled = true;
+        // pistol.GetComponent<Interactor>.InteractionLayerMask = LayerMask.GetMask("Interactable");
         timeIsRunning = true;
     }
 
@@ -61,9 +67,11 @@ public class timing : MonoBehaviour
     public void enemyHit()
     {
         timeIsRunning = false;
-        Debug.Log("I'm hit!");
+        pistol.GetComponent<GunShoot>().canShoot = false;
+
         ShowTime(SetTime(reactionTime));
         reactionText.enabled = true;
+
     }
 
 
@@ -73,7 +81,7 @@ public class timing : MonoBehaviour
     {
         failTextObject.SetActive(true);
 
-        // GetComponent<__get script of pistol__>().enabled = false;
+        // pistol.GetComponent<Interactor>.InteractionLayerMask = 0;
 
         yield return new WaitForSecondsRealtime(5);
 
