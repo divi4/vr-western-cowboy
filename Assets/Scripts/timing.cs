@@ -11,14 +11,14 @@ public class timing : MonoBehaviour
     public GameObject failTextObject;
 
     private bool timeIsRunning = false;   // Set back to false if enemy hit
-    private float countdown = 5;  // Make it randon range
     private bool health = true;
-    private float reactionTime;
+    private float reactionTime = 0; 
+    public float countdownTime;     
 
     // Start is called before the first frame update
     void Start()
     {
-        reactionTime = Random.Range(5.0f, 15.0f);
+        countdownTime = Random.Range(5.0f, 15.0f);
         failTextObject.SetActive(false);
         reactionText.enabled = false;
     }
@@ -26,11 +26,12 @@ public class timing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (countdown > 0)
+        if (countdownTime > 0)
         {
-            countdown -= Time.deltaTime;
-        } else if (countdown == 0) 
+            countdownTime -= Time.deltaTime;
+        } else if (countdownTime <= 0) // BUG: For some reason doesn't equal 0 exactly, check Keke Island's implementation
         {
+            // SoundBell();
             DuelStart();
         }
 
@@ -40,15 +41,12 @@ public class timing : MonoBehaviour
             // if (health != false)
             // {
                 reactionTime += Time.deltaTime;
-                
+
             // }
             // else
             // {
             //     StartCoroutine(SceneFail());
             // }
-        } else {
-            ShowTime(SetTime(reactionTime));
-            reactionText.enabled = true;
         }
     }
 
@@ -63,6 +61,9 @@ public class timing : MonoBehaviour
     public void enemyHit()
     {
         timeIsRunning = false;
+        Debug.Log("I'm hit!");
+        ShowTime(SetTime(reactionTime));
+        reactionText.enabled = true;
     }
 
 
@@ -82,19 +83,18 @@ public class timing : MonoBehaviour
 
     private void ShowTime(float[] timeUnits)
     {
-        reactionText.text = string.Format("{0:0}:{1:00}:{2:000}", timeUnits[0], timeUnits[1], timeUnits[2]);
+        reactionText.text = string.Format("{0:00}:{1:000}", timeUnits[0], timeUnits[1]);
     }
 
 
     private float[] SetTime(float time)
     {
         // External code start https://gamedevbeginner.com/how-to-make-countdown-timer-in-unity-minutes-seconds/
-        float minutes = Mathf.FloorToInt(time / 60);
-        float seconds = Mathf.FloorToInt(time % 60);
+        float seconds = Mathf.FloorToInt(time);
         float milliseconds = (time % 1) * 1000;
         // External code end
 
-        float[] timeUnits = { minutes, seconds, milliseconds };
+        float[] timeUnits = { seconds, milliseconds };
         return timeUnits;
     }
 

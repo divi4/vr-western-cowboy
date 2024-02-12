@@ -3,13 +3,17 @@ Turn smooth hand animation on for hand prefabs
 - Find where to get the Left HandAvatar for animator component
 
 
+Cowboy can't be hit for couple seconds - test
+
 
 Add bullet limit of 6
-Add countdown timer
-Add reaction timer
+Add bell sound, link to countdown
 
+Implement enemy shooting
+Show fail screen on player being hit
 
-Fix reaction timing
+Stop reaction time on enemy hit
+
 Clean up UI
 
 
@@ -20,7 +24,9 @@ Disable gun shoot script
 Show reaction time on screen
 
 
-
+**Later**
+Implement a short tutorial before game
+Have the UI follow the screen like a on-screen hud
 
 
 **Done**
@@ -28,6 +34,11 @@ Figured out VR UI
 Add gravity back to gun
 Bullet hits not registering with cowboy collider
 Check if m_isDisabled is correct/working
+
+Add countdown timer
+Add reaction timer
+Cant see UI in VR, can see overlay on PC as well as camera space if VR not hooked up
+
 
 
 
