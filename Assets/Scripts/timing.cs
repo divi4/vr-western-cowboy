@@ -14,8 +14,8 @@ public class timing : MonoBehaviour
     public TextMeshProUGUI reactionText;
     public GameObject failTextObject;
 
-    private bool timeIsRunning = false;   // Set back to false if enemy hit
-    private bool health = true;
+    private bool timeIsRunning = false;
+    public bool health = true;
     private float reactionTime = 0; 
     public float countdownTime;
     
@@ -45,15 +45,15 @@ public class timing : MonoBehaviour
 
         if (timeIsRunning)
         {
-            // if (health != false)
-            // {
+            if (health != false)
+            {
                 reactionTime += Time.deltaTime;
 
-            // }
-            // else
-            // {
-            //     StartCoroutine(SceneFail());
-            // }
+            }
+            else
+            {
+                StartCoroutine(SceneFail());
+            }
         }
     }
 
@@ -76,7 +76,6 @@ public class timing : MonoBehaviour
         reactionText.enabled = true;
 
     }
-
 
 
 

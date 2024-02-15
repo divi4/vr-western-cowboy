@@ -33,7 +33,7 @@ public class GunShoot : MonoBehaviour
             var bulletPrefab = Instantiate(bullet, bulletPosition.position, bulletPosition.rotation);
             var bulletRB = bulletPrefab.GetComponent<Rigidbody>();
 
-            var direction = bulletPrefab.transform.TransformDirection(Vector3.forward);
+            var direction = bulletPrefab.transform.TransformDirection(Vector3.forward); 
             bulletRB.AddForce(direction * bulletSpeed);
             Destroy(bulletPrefab, 5f);
         }

@@ -7,9 +7,16 @@ Cowboy can't be hit for couple seconds - test
 Stop reaction time on enemy hit
 
 **TO DO**
-Create full body player avatar to have hitbox
+Create full body player avatar 
+Create player hitbox
+Make it so player can't see themselves
+
 Show fail screen on player being hit
 Disable gun on been hit
+
+Fix bullet rotation on instatinate
+
+Disable gun at start in a way that it'll still interact with holster
 
 
 Add bell sound, link to countdown
@@ -44,6 +51,7 @@ Disable gun shooting on hitting target
 Disable grabbing gun during countdown
 
 Implement enemy shooting
+Added player fail state
 
 
 

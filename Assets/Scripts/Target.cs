@@ -38,7 +38,7 @@ public class Target : MonoBehaviour
 
     void Start()
     {
-        shootTime = Random.Range(1.0f, 5.0f); // Change to 3-11 after testing
+        shootTime = Random.Range(5.0f, 10.0f); // Change to 3-11 after testing
         timer = 0.0f;
     }
 
