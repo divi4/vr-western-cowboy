@@ -9,6 +9,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class timing : MonoBehaviour
 {
     public GameObject pistol;
+    public GameObject cowboy;
 
     public TextMeshProUGUI reactionText;
     public GameObject failTextObject;
@@ -61,6 +62,8 @@ public class timing : MonoBehaviour
     {
         pistol.GetComponent<XRGrabInteractable>().interactionLayers = InteractionLayerMask.GetMask("Interactable");
         timeIsRunning = true;
+
+        cowboy.GetComponent<Target>().isDuelStart = true;
     }
 
 

@@ -7,8 +7,7 @@ Cowboy can't be hit for couple seconds - test
 Stop reaction time on enemy hit
 
 **TO DO**
-Implement enemy shooting
-
+Create full body player avatar to have hitbox
 Show fail screen on player being hit
 Disable gun on been hit
 
@@ -44,14 +43,15 @@ Updated game project Unity version
 Disable gun shooting on hitting target
 Disable grabbing gun during countdown
 
+Implement enemy shooting
+
 
 
 **Later**
 Implement a short tutorial before game
 Have the UI follow the screen like a on-screen hud
 Add randomness to the trajectory of the shots of the AI so they don't always hit the player first shot
-
-
+Refactor gun and target scripts into a superclass and extendeds
 
 
 

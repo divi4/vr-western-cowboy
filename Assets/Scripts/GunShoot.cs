@@ -52,7 +52,7 @@ public class GunShoot : MonoBehaviour
     public void NoBulletsAudio() 
     { 
         var random = Random.Range(0.8f, 1.2f);
-        audioSource.pitch = random;
+        audioSource.pitch = random;  // Change source
         
         audioSource.Play();
     }

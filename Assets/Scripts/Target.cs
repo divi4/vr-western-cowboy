@@ -12,44 +12,64 @@ public class Target : MonoBehaviour
     private Vector3 m_RandomRotation;
     private bool m_isDisabled;
 
-    public float shootTime;
-    private bool isDuelStart = false;
-
-
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform bulletPosition;
-    [SerializeField] private float shootDelay = 0.2f;
     [Range(0, 3000), SerializeField] private float bulletSpeed;
 
     [Space, SerializeField] private AudioSource audioSource;
 
 
-    private void Awake()
+    private float timer;
+    private float shootTime;
+    public bool isDuelStart = false;
+
+    private float lastShot;
+    public int bullets = 6;
+
+
+    void Awake()
     {
         m_Renderer = GetComponentInChildren<SkinnedMeshRenderer>();
         m_Collider = GetComponent<BoxCollider>();
-        m_AudioSource = GetComponent<AudioSource>();
-        m_ParticleSystem = GetComponentInChildren<ParticleSystem>();
+        // m_AudioSource = GetComponent<AudioSource>();  Why here?
+        // m_ParticleSystem = GetComponentInChildren<ParticleSystem>(); Why here?
+    }
 
-        shootTime = Random.Range(1.0f, 5.0f); // Change to 4-11 after testing
+
+    void Start()
+    {
+        shootTime = Random.Range(1.0f, 5.0f); // Change to 3-11 after testing
+        timer = 0.0f;
     }
 
 
     void Update() 
-    {
-        if (isDuelStart) {
-            shootTime -= Time.deltaTime;
-        } else if ((!isDuelStart && shootTime <= 0)) {
-            shootPlayer();
-        }
+    {        
+        if (isDuelStart == true) {
+            timer += Time.deltaTime;
 
+            if (timer >= shootTime)
+            {
+                shootPlayer();
+                timer = 0.0f;
+                shootTime = Random.Range(1.0f, 5.0f);
+            }
+        }
     }
 
 
-    private void shootPlayer() 
+    public void shootPlayer() 
     {
-        Debug.Log("Bullet shot!"); // Current doesn't work
-        
+        if(bullets == 0) {
+            // NoBulletsAudio();
+            return;
+        }
+
+        // TODO add audio
+        // GunShotAudio();
+
+        bullets -= 1;
+
         var bulletPrefab = Instantiate(bullet, bulletPosition.position, bulletPosition.rotation);
         var bulletRB = bulletPrefab.GetComponent<Rigidbody>();
 
@@ -71,7 +91,7 @@ public class Target : MonoBehaviour
     public void NoBulletsAudio() 
     { 
         var random = Random.Range(0.8f, 1.2f);
-        audioSource.pitch = random;
+        audioSource.pitch = random;  // Change source
         
         audioSource.Play();
     }
