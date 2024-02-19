@@ -1,28 +1,27 @@
+If collider too small, bullet won't register as prob too fast
+
 **Bugs**
 Turn smooth hand animation on for hand prefabs
 - Fix hash not found error
 - Find where to get the Left HandAvatar for animator component
 
-Cowboy can't be hit for couple seconds - test
 Stop reaction time on enemy hit
 
 **TO DO**
 Make it so player can't see themselves
 
-Enemy stops shooting player on hit
-
--------------------------------------------------------------check-----------------> Disable gun on been hit
+SFX: Gun being dropped on ground
 
 Fix bullet rotation on instatinate
 
 Disable gun at start in a way that it'll still interact with holster
 
-
-
-
 Add bgm
 Add holster/unholster sounds
 
+
+Show Draw! text if both get hit - check healths 2 seconds after first hit
+Show Draw? text if both run out of bullets
 
 
 **Plan**
@@ -54,16 +53,15 @@ Added player fail state
 Create player hitbox
 Create full body player avatar 
 
-
 Show fail screen on player being hit
+Disable gun on been hit
 Add bell sound, link to countdown
 Add on player being hit sound
 Add gun sounds
 
-
-
-
-
+Fixed enemy cowboy not reacting to being hit
+Enemy stops shooting if they're hit
+Enemy stops shooting player on hit
 
 
 
@@ -76,7 +74,7 @@ Implement a short tutorial before game
 Have the UI follow the screen like a on-screen hud
 Add randomness to the trajectory of the shots of the AI so they don't always hit the player first shot
 Refactor gun and target scripts into a superclass and extendeds
-
+Stop enemy Cowboy shooting after being hit in a better way by diabling var timer
 
 
 

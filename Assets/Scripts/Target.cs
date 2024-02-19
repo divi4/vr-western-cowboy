@@ -18,11 +18,14 @@ public class Target : MonoBehaviour
 
     [Space, SerializeField] private AudioSource shootAudioSource;
     [Space, SerializeField] private AudioSource noBulletsAudioSource;
+    [Space, SerializeField] private AudioSource bodyFallAudioSource;
 
 
     private float timer;
     private float shootTime;
     public bool isDuelStart = false;
+    public bool canShoot = true;
+
 
     private float lastShot;
     public int bullets = 6;
@@ -32,8 +35,7 @@ public class Target : MonoBehaviour
     {
         m_Renderer = GetComponentInChildren<SkinnedMeshRenderer>();
         m_Collider = GetComponent<BoxCollider>();
-        // m_AudioSource = GetComponent<AudioSource>();  Why here?
-        // m_ParticleSystem = GetComponentInChildren<ParticleSystem>(); Why here?
+        // m_ParticleSystem = GetComponentInChildren<ParticleSystem>();
     }
 
 
@@ -61,7 +63,8 @@ public class Target : MonoBehaviour
 
     public void shootPlayer() 
     {
-        if(bullets == 0) {
+        if (canShoot == false) return;
+        if (bullets == 0) {
             NoBulletsAudio();
             return;
         }
@@ -97,21 +100,30 @@ public class Target : MonoBehaviour
     }
 
 
+    public void bodyFallAudio() 
+    {   
+        var random = Random.Range(0.8f, 1.2f);
+        bodyFallAudioSource.pitch = random;
+        
+        bodyFallAudioSource.Play();
+    }
+
+
     private void OnTriggerEnter(Collider other)
     {
-        if (!m_isDisabled && other.gameObject.CompareTag("Bullet"))
-        {
+     if (!m_isDisabled && other.gameObject.CompareTag("Bullet"))
+     {      
+            bodyFallAudio();
+
             Destroy(other.gameObject);
             ToggleTarget();
 
             reactionText.GetComponent<timing>().enemyHit();
 
-            // TODO add audio and particle system
+            // TODO add particle system
             //TargetDestroyEffect();
-            
-            Invoke("ToggleTarget", 3f); // Respawn target for testing
-
-            //ReactionTimerStop() Stop reaction timer
+        
+            //add a ReactionTimerStop() function to stop reaction timer
         }
     }
 
@@ -120,16 +132,11 @@ public class Target : MonoBehaviour
         m_Renderer.enabled = m_isDisabled;
         m_Collider.enabled = m_isDisabled;
 
-        m_isDisabled = !m_isDisabled;
+        canShoot = false;
     }
 
     private void TargetDestroyEffect()
     {
-        var random = Random.Range(0.8f, 1.0f);
-
-        m_AudioSource.pitch = random;
-
-        m_AudioSource.Play();
         m_ParticleSystem.Play();
     }
 }
