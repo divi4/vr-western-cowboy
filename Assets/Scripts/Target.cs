@@ -16,7 +16,8 @@ public class Target : MonoBehaviour
     [SerializeField] private Transform bulletPosition;
     [Range(0, 3000), SerializeField] private float bulletSpeed;
 
-    [Space, SerializeField] private AudioSource audioSource;
+    [Space, SerializeField] private AudioSource shootAudioSource;
+    [Space, SerializeField] private AudioSource noBulletsAudioSource;
 
 
     private float timer;
@@ -61,12 +62,11 @@ public class Target : MonoBehaviour
     public void shootPlayer() 
     {
         if(bullets == 0) {
-            // NoBulletsAudio();
+            NoBulletsAudio();
             return;
         }
 
-        // TODO add audio
-        // GunShotAudio();
+        GunShotAudio();
 
         bullets -= 1;
 
@@ -82,18 +82,18 @@ public class Target : MonoBehaviour
     public void GunShotAudio() 
     { 
         var random = Random.Range(0.8f, 1.2f);
-        audioSource.pitch = random;
+        shootAudioSource.pitch = random;
         
-        audioSource.Play();
+        shootAudioSource.Play();
     }
 
 
     public void NoBulletsAudio() 
     { 
         var random = Random.Range(0.8f, 1.2f);
-        audioSource.pitch = random;  // Change source
+        noBulletsAudioSource.pitch = random;
         
-        audioSource.Play();
+        noBulletsAudioSource.Play();
     }
 
 

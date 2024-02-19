@@ -7,7 +7,8 @@ public class GunShoot : MonoBehaviour
     [SerializeField] private float shootDelay = 0.2f;
     [Range(0, 3000), SerializeField] private float bulletSpeed;
 
-    [Space, SerializeField] private AudioSource audioSource;
+    [Space, SerializeField] private AudioSource shootAudioSource;
+    [Space, SerializeField] private AudioSource noBulletsAudioSource;
 
     private float lastShot;
     public int bullets = 6;
@@ -19,14 +20,13 @@ public class GunShoot : MonoBehaviour
             if (lastShot > Time.time) return;
 
             if(bullets == 0) {
-                // NoBulletsAudio();
+                NoBulletsAudio();
                 return;
             }
 
             lastShot = Time.time + shootDelay;
 
-            // TODO add audio
-            // GunShotAudio();
+            GunShotAudio();
 
             bullets -= 1;
 
@@ -43,17 +43,17 @@ public class GunShoot : MonoBehaviour
     public void GunShotAudio() 
     { 
         var random = Random.Range(0.8f, 1.2f);
-        audioSource.pitch = random;
+        shootAudioSource.pitch = random;
         
-        audioSource.Play();
+        shootAudioSource.Play();
     }
 
 
     public void NoBulletsAudio() 
     { 
         var random = Random.Range(0.8f, 1.2f);
-        audioSource.pitch = random;  // Change source
+        noBulletsAudioSource.pitch = random;
         
-        audioSource.Play();
+        noBulletsAudioSource.Play();
     }
 }

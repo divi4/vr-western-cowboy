@@ -14,11 +14,17 @@ public class timing : MonoBehaviour
     public TextMeshProUGUI reactionText;
     public GameObject failTextObject;
 
+    [Space, SerializeField] private AudioSource bellTollAudioSource;
+    [Space, SerializeField] private AudioSource bodyFallAudioSource;
+
     private bool timeIsRunning = false;
     public bool health = true;
     private float reactionTime = 0; 
     public float countdownTime;
-    
+
+
+    private bool duelBegun = false;
+    private bool failBegun = false;
 
     // Start is called before the first frame update
     void Start()
@@ -38,14 +44,13 @@ public class timing : MonoBehaviour
             countdownTime -= Time.deltaTime;
         } else if (countdownTime <= 0) // BUG: For some reason doesn't equal 0 exactly, check Keke Island's implementation
         {
-            // SoundBell();
             DuelStart();
         }
 
 
         if (timeIsRunning)
         {
-            if (health != false)
+            if (health == true)
             {
                 reactionTime += Time.deltaTime;
 
@@ -60,10 +65,15 @@ public class timing : MonoBehaviour
 
     private void DuelStart()
     {
+        if (duelBegun == false) {
+            StartCoroutine(bellTollAudio());
+        }
+
         pistol.GetComponent<XRGrabInteractable>().interactionLayers = InteractionLayerMask.GetMask("Interactable");
         timeIsRunning = true;
 
         cowboy.GetComponent<Target>().isDuelStart = true;
+
     }
 
 
@@ -74,13 +84,16 @@ public class timing : MonoBehaviour
 
         ShowTime(SetTime(reactionTime));
         reactionText.enabled = true;
-
     }
 
 
 
     IEnumerator SceneFail()
     {
+        if (failBegun == false) {
+            bodyFallAudio();
+        }
+
         failTextObject.SetActive(true);
 
         pistol.GetComponent<XRGrabInteractable>().interactionLayers = InteractionLayerMask.GetMask("Nothing");
@@ -88,6 +101,39 @@ public class timing : MonoBehaviour
         yield return new WaitForSecondsRealtime(5);
 
         SceneManager.LoadScene("SampleScene");
+    }
+
+
+    public void bodyFallAudio() 
+    { 
+        failBegun = true;
+        
+        var random = Random.Range(0.8f, 1.2f);
+        bodyFallAudioSource.pitch = random;
+        
+        bodyFallAudioSource.Play();
+    }
+
+
+    IEnumerator bellTollAudio() 
+    {
+        duelBegun = true;
+
+        float length = bellTollAudioSource.clip.length;
+        for(int i = 0; i < 3; i++) {
+
+            if (failBegun == true) {
+                bellTollAudioSource.Stop();
+                break;
+            }
+
+            var random = Random.Range(0.6f, 0.8f);
+            bellTollAudioSource.pitch = random;
+            
+            bellTollAudioSource.Play();
+
+            yield return new WaitForSeconds(length);
+        }
     }
 
 

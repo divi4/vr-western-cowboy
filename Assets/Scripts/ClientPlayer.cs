@@ -5,9 +5,13 @@ using UnityEngine;
 public class ClientPlayer : MonoBehaviour
 {
     public GameObject reactionText;
+    private bool m_isDisabled;
 
-    public void OnTriggerEnter()
+    public void OnTriggerEnter(Collider other)
     {
+     if (!m_isDisabled && other.gameObject.CompareTag("Bullet"))
+     {
         reactionText.GetComponent<timing>().health = false;
+     }
     }
 }
