@@ -8,16 +8,11 @@ Turn smooth hand animation on for hand prefabs
 Stop reaction time on enemy hit
 
 **TO DO**
-Make it so player can't see themselves
-
-
-
-
-
-
-
-Vector3(0,0,-22.7999992)
-
+Give players new models with no arms
+Reimplement bullets/reduce ricohet
+Add a backdrop on P1 side
+Add randomness to the trajectory of the shots of the AI so they don't always hit the player first shot
+Animate AI
 
 Show Draw! text if both get hit - check healths 2 seconds after first hit
 Show Draw? text if both run out of bullets
@@ -70,16 +65,18 @@ Add holster/unholster sounds
 Gun doesn't fall through holster before duel starts
 Fix bullet rotation on instatinate for enemy cowboy
 
+Tweaked duel settings based on player feedback
+Added simple backdrop
+Added extra buildings and objects
+
 
 
 
 **Later**
 Implement a short tutorial before game
 Have the UI follow the screen like a on-screen hud
-Add randomness to the trajectory of the shots of the AI so they don't always hit the player first shot
 Refactor gun and target scripts into a superclass and extendeds
 Stop enemy Cowboy shooting after being hit in a better way by diabling var timer
-Reimplement bullets to fix issue with bullet rotation for player
 
 
 Didn't add gaze controller and screen space controller

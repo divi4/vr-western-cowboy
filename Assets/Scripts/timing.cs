@@ -79,13 +79,16 @@ public class timing : MonoBehaviour
     }
 
 
-    public void enemyHit()
+    public IEnumerator enemyHit()
     {
         timeIsRunning = false;
-        pistol.GetComponent<GunShoot>().canShoot = false;
 
         ShowTime(SetTime(reactionTime));
         reactionText.enabled = true;
+
+        yield return new WaitForSecondsRealtime(7);
+
+        SceneManager.LoadScene("SampleScene");
     }
 
 

@@ -41,7 +41,7 @@ public class Target : MonoBehaviour
 
     void Start()
     {
-        shootTime = Random.Range(5.0f, 10.0f); // Change to 3-11 after testing
+        shootTime = Random.Range(2f, 2.9f); // Change to 3-11 after testing
         timer = 0.0f;
     }
 
@@ -55,7 +55,7 @@ public class Target : MonoBehaviour
             {
                 shootPlayer();
                 timer = 0.0f;
-                shootTime = Random.Range(1.0f, 5.0f);
+                shootTime = Random.Range(1.3f, 3.0f);
             }
         }
     }
@@ -118,7 +118,7 @@ public class Target : MonoBehaviour
             Destroy(other.gameObject);
             ToggleTarget();
 
-            reactionText.GetComponent<timing>().enemyHit();
+            StartCoroutine(reactionText.GetComponent<timing>().enemyHit());
 
             // TODO add particle system
             //TargetDestroyEffect();
