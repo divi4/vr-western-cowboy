@@ -10,14 +10,13 @@ Stop reaction time on enemy hit
 **TO DO**
 Make it so player can't see themselves
 
-SFX: Gun being dropped on ground
 
-Fix bullet rotation on instatinate
 
-Disable gun at start in a way that it'll still interact with holster
 
-Add bgm
-Add holster/unholster sounds
+
+
+
+Vector3(0,0,-22.7999992)
 
 
 Show Draw! text if both get hit - check healths 2 seconds after first hit
@@ -63,8 +62,13 @@ Fixed enemy cowboy not reacting to being hit
 Enemy stops shooting if they're hit
 Enemy stops shooting player on hit
 
-
-
+Add bgm to duel
+Added wind SFX to gameover
+Updated failtext
+SFX: Gun being dropped on ground - (kinda cheesed it, just use 'holster' sound on deselect)
+Add holster/unholster sounds
+Gun doesn't fall through holster before duel starts
+Fix bullet rotation on instatinate for enemy cowboy
 
 
 
@@ -75,7 +79,7 @@ Have the UI follow the screen like a on-screen hud
 Add randomness to the trajectory of the shots of the AI so they don't always hit the player first shot
 Refactor gun and target scripts into a superclass and extendeds
 Stop enemy Cowboy shooting after being hit in a better way by diabling var timer
-
+Reimplement bullets to fix issue with bullet rotation for player
 
 
 Didn't add gaze controller and screen space controller

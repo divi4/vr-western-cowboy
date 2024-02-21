@@ -16,6 +16,8 @@ public class timing : MonoBehaviour
 
     [Space, SerializeField] private AudioSource bellTollAudioSource;
     [Space, SerializeField] private AudioSource bodyFallAudioSource;
+    [Space, SerializeField] private AudioSource gameOverAudioSource;
+    [Space, SerializeField] private AudioSource duelAudioSource;
 
     private bool timeIsRunning = false;
     public bool health = true;
@@ -92,6 +94,7 @@ public class timing : MonoBehaviour
     {
         if (failBegun == false) {
             bodyFallAudio();
+            gameOverAudio();
         }
 
         failTextObject.SetActive(true);
@@ -112,6 +115,13 @@ public class timing : MonoBehaviour
         bodyFallAudioSource.pitch = random;
         
         bodyFallAudioSource.Play();
+        duelAudioSource.Stop();
+    }
+
+
+    public void gameOverAudio()
+    {
+        gameOverAudioSource.Play();
     }
 
 
