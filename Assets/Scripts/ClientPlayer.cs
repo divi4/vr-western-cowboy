@@ -13,8 +13,8 @@ public class ClientPlayer : MonoBehaviour
     {
      if (!m_isDisabled && other.gameObject.CompareTag("Bullet"))
      {
-        reactionText.GetComponent<timing>().health = false;
-        enemyCowboy.GetComponent<Target>().canShoot = false;
+        //reactionText.GetComponent<timing>().health = false;
+        //enemyCowboy.GetComponent<Target>().canShoot = false;
      }
     }
 }

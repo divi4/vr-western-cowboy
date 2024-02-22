@@ -13,6 +13,8 @@ public class timing : MonoBehaviour
 
     public TextMeshProUGUI reactionText;
     public GameObject failTextObject;
+    public GameObject hitDrawTextObject;
+    public GameObject bulletDrawTextObject;
 
     [Space, SerializeField] private AudioSource bellTollAudioSource;
     [Space, SerializeField] private AudioSource bodyFallAudioSource;
@@ -21,6 +23,7 @@ public class timing : MonoBehaviour
 
     private bool timeIsRunning = false;
     public bool health = true;
+    private bool isEnemyHit = false;
     private float reactionTime = 0; 
     public float countdownTime;
 
@@ -33,6 +36,8 @@ public class timing : MonoBehaviour
     {
         countdownTime = Random.Range(5.0f, 15.0f);
         failTextObject.SetActive(false);
+        hitDrawTextObject.SetActive(false);
+        bulletDrawTextObject.SetActive(false);
         reactionText.enabled = false;
 
         pistol.GetComponent<XRGrabInteractable>().interactionLayers = InteractionLayerMask.GetMask("Nothing");
@@ -52,12 +57,19 @@ public class timing : MonoBehaviour
 
         if (timeIsRunning)
         {
-            if (health == true)
+            if (health)
             {
                 reactionTime += Time.deltaTime;
 
+                if (cowboy.GetComponent<Target>().bullets == 0 && pistol.GetComponent<GunShoot>().bullets == 0)
+                {
+                    StartCoroutine(bulletDrawFail());
+                }
+
             }
-            else
+            else if (isEnemyHit) {
+                StartCoroutine(hitDrawFail());
+            } else
             {
                 StartCoroutine(SceneFail());
             }
@@ -81,16 +93,22 @@ public class timing : MonoBehaviour
 
     public IEnumerator enemyHit()
     {
-        timeIsRunning = false;
+        isEnemyHit = true;
 
-        ShowTime(SetTime(reactionTime));
-        reactionText.enabled = true;
+        yield return new WaitForSecondsRealtime(1);
 
-        yield return new WaitForSecondsRealtime(7);
+        if (health == true) 
+        {
+            timeIsRunning = false;
 
-        SceneManager.LoadScene("SampleScene");
+            ShowTime(SetTime(reactionTime));
+            reactionText.enabled = true;
+
+            yield return new WaitForSecondsRealtime(7);
+
+            SceneManager.LoadScene("SampleScene");
+        }
     }
-
 
 
     IEnumerator SceneFail()
@@ -98,6 +116,7 @@ public class timing : MonoBehaviour
         if (failBegun == false) {
             bodyFallAudio();
             gameOverAudio();
+            duelAudioSource.Stop();
         }
 
         failTextObject.SetActive(true);
@@ -105,6 +124,41 @@ public class timing : MonoBehaviour
         pistol.GetComponent<XRGrabInteractable>().interactionLayers = InteractionLayerMask.GetMask("Nothing");
 
         yield return new WaitForSecondsRealtime(5);
+
+        SceneManager.LoadScene("SampleScene");
+    }
+
+
+    IEnumerator bulletDrawFail() // Refactor with SceneFail()
+    {
+        yield return new WaitForSecondsRealtime(3);
+
+        if (failBegun == false)
+        {
+            gameOverAudio();
+            duelAudioSource.Stop();
+        }
+
+        bulletDrawTextObject.SetActive(true);
+
+        yield return new WaitForSecondsRealtime(10);
+
+        SceneManager.LoadScene("SampleScene");
+    }
+
+
+    IEnumerator hitDrawFail() // Refactor with SceneFail()
+    {
+        if (failBegun == false)
+        {
+            bodyFallAudio();
+            gameOverAudio();
+            duelAudioSource.Stop();
+        }
+
+        hitDrawTextObject.SetActive(true);  // Shows Draw! if both AI and player hit
+
+        yield return new WaitForSecondsRealtime(7);
 
         SceneManager.LoadScene("SampleScene");
     }
@@ -118,12 +172,13 @@ public class timing : MonoBehaviour
         bodyFallAudioSource.pitch = random;
         
         bodyFallAudioSource.Play();
-        duelAudioSource.Stop();
     }
 
 
     public void gameOverAudio()
     {
+        failBegun = true;
+
         gameOverAudioSource.Play();
     }
 
@@ -152,14 +207,14 @@ public class timing : MonoBehaviour
 
     private void ShowTime(float[] timeUnits)
     {
-        reactionText.text = string.Format("{0:00}:{1:000}", timeUnits[0], timeUnits[1]);
+        reactionText.text = string.Format("{0:00}:{1:00}", timeUnits[0], timeUnits[1]);
     }
 
 
     private float[] SetTime(float time)
     {
         // External code start https://gamedevbeginner.com/how-to-make-countdown-timer-in-unity-minutes-seconds/
-        float seconds = Mathf.FloorToInt(time);
+        float seconds = Mathf.FloorToInt(time - 1);
         float milliseconds = (time % 1) * 1000;
         // External code end
 

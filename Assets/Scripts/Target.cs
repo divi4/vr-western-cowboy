@@ -8,6 +8,8 @@ public class Target : MonoBehaviour
     private BoxCollider m_Collider;
     private AudioSource m_AudioSource;
     private ParticleSystem m_ParticleSystem;
+    private Animator cowbodyAnimator;
+
 
     private Vector3 m_RandomRotation;
     private bool m_isDisabled;
@@ -41,6 +43,8 @@ public class Target : MonoBehaviour
 
     void Start()
     {
+        cowbodyAnimator = GetComponent<Animator>();
+
         shootTime = Random.Range(2f, 2.9f); // Change to 3-11 after testing
         timer = 0.0f;
     }
@@ -55,7 +59,10 @@ public class Target : MonoBehaviour
             {
                 shootPlayer();
                 timer = 0.0f;
-                shootTime = Random.Range(1.3f, 3.0f);
+                shootTime = Random.Range(2.5f, 4.2f);
+            } else
+            {
+                cowbodyAnimator.SetBool("isShoot", false);
             }
         }
     }
@@ -68,6 +75,8 @@ public class Target : MonoBehaviour
             NoBulletsAudio();
             return;
         }
+
+        cowbodyAnimator.SetBool("isShoot", true);
 
         GunShotAudio();
 

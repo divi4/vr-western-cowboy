@@ -7,16 +7,20 @@ Turn smooth hand animation on for hand prefabs
 
 Stop reaction time on enemy hit
 
+AI animation causes model to slowly fall through the ground - possibly due to high playback speed
+https://stackoverflow.com/questions/39546971/character-fall-through-ground-after-playing-sometime
+
 **TO DO**
-Give players new models with no arms
-Reimplement bullets/reduce ricohet
-Add a backdrop on P1 side
+Remove holster model's insignia on texture
+Make holster follow player
 Add randomness to the trajectory of the shots of the AI so they don't always hit the player first shot
-Animate AI
 
-Show Draw! text if both get hit - check healths 2 seconds after first hit
-Show Draw? text if both run out of bullets
 
+Give players new models with no arms
+Add multiplayer
+
+
+Reimplement bullets/reduce ricohet
 
 **Plan**
 Create a random var countdown every second to 0
@@ -69,6 +73,7 @@ Tweaked duel settings based on player feedback
 Added simple backdrop
 Added extra buildings and objects
 
+Animate AI, Show Draw? text if both run out of bullets, Show Draw! text if both get hit, Fixed gameover audio not playing, Added new holster model
 
 
 
@@ -77,6 +82,8 @@ Implement a short tutorial before game
 Have the UI follow the screen like a on-screen hud
 Refactor gun and target scripts into a superclass and extendeds
 Stop enemy Cowboy shooting after being hit in a better way by diabling var timer
+Fine-tune AI animation to sync better with bullet shot
+Change Draw! implementation so that can show reaction time immediately
 
 
 Didn't add gaze controller and screen space controller
