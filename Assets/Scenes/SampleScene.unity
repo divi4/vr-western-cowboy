@@ -2959,7 +2959,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1057823799}
+    m_TransformParent: {fileID: 1974410919}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 5b29720bd5a71844c82c0688a7d748dc,
         type: 3}
@@ -2979,37 +2979,37 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5b29720bd5a71844c82c0688a7d748dc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.001
+      value: 0.31899998
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b29720bd5a71844c82c0688a7d748dc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.018
+      value: -0.7926
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b29720bd5a71844c82c0688a7d748dc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.1185
+      value: 0.1105
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b29720bd5a71844c82c0688a7d748dc,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b29720bd5a71844c82c0688a7d748dc,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b29720bd5a71844c82c0688a7d748dc,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b29720bd5a71844c82c0688a7d748dc,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b29720bd5a71844c82c0688a7d748dc,
         type: 3}
@@ -3587,7 +3587,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1801451189}
-  - {fileID: 879585928}
   - {fileID: 2018924010}
   - {fileID: 1141551383}
   m_Father: {fileID: 0}
@@ -7502,6 +7501,7 @@ Transform:
   - {fileID: 2031971466}
   - {fileID: 1344825381}
   - {fileID: 1534815511}
+  - {fileID: 879585928}
   m_Father: {fileID: 1133331005}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2001559224 stripped

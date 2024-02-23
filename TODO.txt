@@ -13,8 +13,10 @@ https://stackoverflow.com/questions/39546971/character-fall-through-ground-after
 **TO DO**
 Remove holster model's insignia on texture
 Make holster follow player
+
 Add randomness to the trajectory of the shots of the AI so they don't always hit the player first shot
 
+Create start menu
 
 Give players new models with no arms
 Add multiplayer
@@ -73,7 +75,11 @@ Tweaked duel settings based on player feedback
 Added simple backdrop
 Added extra buildings and objects
 
-Animate AI, Show Draw? text if both run out of bullets, Show Draw! text if both get hit, Fixed gameover audio not playing, Added new holster model
+Animate AI
+Show Draw? text if both run out of bullets
+Show Draw! text if both get hit
+Fixed gameover audio not playing
+Added new holster model
 
 
 
