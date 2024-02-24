@@ -82,12 +82,18 @@ public class Target : MonoBehaviour
 
         bullets -= 1;
 
-        var bulletPrefab = Instantiate(bullet, bulletPosition.position, bulletPosition.rotation);
+        // 4/6 * 2/4 = 8/24 = 1/3 probability of hitting player
+        float[] horizontalAim = {0f, 0.5f, 0.75f, 1f, -1f, 2f}; // First four are trajectories that'll hit the target, 4/6, -int moves horizontal right relative to player
+        float[] verticalAim = { 0f, -1f, -2f, -2.5f}; // First two are trajectories that'll hit the target, 2/4, -int moves vertical up relative to player
+
+        Quaternion aim = Quaternion.Euler(verticalAim[Random.Range(0,4)], 0f, horizontalAim[Random.Range(0,6)]); // vertical is x as the transform object x rotation is altered by 90degrees
+
+        var bulletPrefab = Instantiate(bullet, bulletPosition.position, bulletPosition.rotation * aim);
         var bulletRB = bulletPrefab.GetComponent<Rigidbody>();
 
         var direction = bulletPrefab.transform.TransformDirection(Vector3.up);
         bulletRB.AddForce(direction * bulletSpeed);
-        Destroy(bulletPrefab, 5f);
+        Destroy(bulletPrefab, 3f);
     }
 
 
