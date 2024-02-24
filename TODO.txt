@@ -92,8 +92,8 @@ Added new holster model
 
 Remove holster model's insignia on texture
 
-Add randomness to the trajectory of AI shot, 1/3 chance of hitting
-
+Add randomness to the trajectory of AI shot, 1/3 chance of hitting, Added main menu and instructions screen,
+Added title
 
 
 **Later**
