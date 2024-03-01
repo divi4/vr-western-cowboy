@@ -44,7 +44,7 @@ public class Target : MonoBehaviour
     {
         cowbodyAnimator = GetComponent<Animator>();
 
-        shootTime = Random.Range(2f, 2.9f); // Change to 3-11 after testing
+        shootTime = Random.Range(1.7f, 2.5f);
         timer = 0.0f;
     }
 
