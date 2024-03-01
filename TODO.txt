@@ -1,13 +1,6 @@
 Quaternion rotation = Quaternion.Euler(0f, 180f, 0f);
 https://docs.unity3d.com/ScriptReference/Quaternion.html
 
-12.47
-
-2/3 right - hor   4/6 2/4
-1/2 right - vert
-
-= 2/6 = 1/3
-
 If collider too small, bullet won't register as prob too fast
 
 **Bugs**
@@ -22,9 +15,6 @@ https://stackoverflow.com/questions/39546971/character-fall-through-ground-after
 
 **TO DO**
 
-Make holster follow player, check
-
-Create start menu
 
 
 Give players new models with no arms
@@ -92,8 +82,16 @@ Added new holster model
 
 Remove holster model's insignia on texture
 
-Add randomness to the trajectory of AI shot, 1/3 chance of hitting, Added main menu and instructions screen,
+Add randomness to the trajectory of AI shot, 1/3 chance of hitting
+Added main menu and instructions screen
 Added title
+
+Add bgm to start menu
+Made menus interactable
+Fixed holster interaction
+Increase AI hit probability to 9/10
+Removed gravity so can disable holster interaction without gun falling
+Fixed time not round to 2 decimal places by multiplying by 100 not 1000
 
 
 **Later**
@@ -104,6 +102,8 @@ Stop enemy Cowboy shooting after being hit in a better way by diabling var timer
 Fine-tune AI animation to sync better with bullet shot
 Change Draw! implementation so that can show reaction time immediately
 Make it so if bullet hits ground, it disappears
+Make holster map to player position on load
+Find a better solution to disabling gun interaction before duel - make gun in holster a model then replace as duel starts?
 
 Didn't add gaze controller and screen space controller
 

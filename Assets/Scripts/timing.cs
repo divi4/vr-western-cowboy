@@ -106,7 +106,7 @@ public class timing : MonoBehaviour
 
             yield return new WaitForSecondsRealtime(7);
 
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("Menu");
         }
     }
 
@@ -125,7 +125,7 @@ public class timing : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(5);
 
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Menu");
     }
 
 
@@ -215,7 +215,7 @@ public class timing : MonoBehaviour
     {
         // External code start https://gamedevbeginner.com/how-to-make-countdown-timer-in-unity-minutes-seconds/
         float seconds = Mathf.FloorToInt(time - 1);
-        float milliseconds = (time % 1) * 1000;
+        float milliseconds = (time % 1) * 100;
         // External code end
 
         float[] timeUnits = { seconds, milliseconds };

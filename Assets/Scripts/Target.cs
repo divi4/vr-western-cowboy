@@ -12,7 +12,6 @@ public class Target : MonoBehaviour
 
 
     private Vector3 m_RandomRotation;
-    private bool m_isDisabled;
 
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform bulletPosition;
@@ -82,12 +81,14 @@ public class Target : MonoBehaviour
 
         bullets -= 1;
 
-        // 4/6 * 2/4 = 8/24 = 1/3 probability of hitting player
-        float[] horizontalAim = {0f, 0.5f, 0.75f, 1f, -1f, 2f}; // First four are trajectories that'll hit the target, 4/6, -int moves horizontal right relative to player
-        float[] verticalAim = { 0f, -1f, -2f, -2.5f}; // First two are trajectories that'll hit the target, 2/4, -int moves vertical up relative to player
 
-        Quaternion aim = Quaternion.Euler(verticalAim[Random.Range(0,4)], 0f, horizontalAim[Random.Range(0,6)]); // vertical is x as the transform object x rotation is altered by 90degrees
 
+        // 9/10 probability of hitting player
+        float[] horizontalAim = {0f, 0.5f, 0.75f, 1f, 1.25f, -0.5f, 0f, 0.5f, 0.75f, -1f}; // First nine are trajectories that'll hit the target, 9/10, -int moves horizontal right relative to player
+        float[] verticalAim = { 0f, -1f, 1, 0f, -1f, 1, 0f, -1f, 1, -2.5f}; // First nine are trajectories that'll hit the target, 9/10, -int moves vertical up relative to player
+
+        Quaternion aim = Quaternion.Euler(verticalAim[Random.Range(0,9)], 0f, horizontalAim[Random.Range(0, 9)]); // vertical is x as the transform object x rotation is altered by 90degrees
+        
         var bulletPrefab = Instantiate(bullet, bulletPosition.position, bulletPosition.rotation * aim);
         var bulletRB = bulletPrefab.GetComponent<Rigidbody>();
 
@@ -126,7 +127,7 @@ public class Target : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-     if (!m_isDisabled && other.gameObject.CompareTag("Bullet"))
+     if (isDuelStart && other.gameObject.CompareTag("Bullet"))
      {      
             bodyFallAudio();
 
@@ -144,8 +145,8 @@ public class Target : MonoBehaviour
 
     private void ToggleTarget()
     {
-        m_Renderer.enabled = m_isDisabled;
-        m_Collider.enabled = m_isDisabled;
+        m_Renderer.enabled = false;
+        m_Collider.enabled = false;
 
         canShoot = false;
     }
